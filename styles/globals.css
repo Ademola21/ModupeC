@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NProgress Loading Bar Customization */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: linear-gradient(90deg, #6366f1, #d946ef);
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #6366f1, 0 0 5px #d946ef;
+  opacity: 1.0;
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Aurora Background Effect */
+@keyframes moveAurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+html {
+  --aurora-color-1: rgba(99, 102, 241, 0.15); /* Indigo */
+  --aurora-color-2: rgba(217, 70, 239, 0.1);  /* Fuchsia */
+}
+
+html.dark {
+  --aurora-color-1: rgba(99, 102, 241, 0.1);
+  --aurora-color-2: rgba(217, 70, 239, 0.05);
+}
+
+body {
+  background-color: white;
+}
+
+.dark body {
+  background-color: #0D0C0F;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 20%, var(--aurora-color-1), transparent 35%),
+                    radial-gradient(circle at 80% 70%, var(--aurora-color-2), transparent 35%);
+  background-size: 200% 200%;
+  animation: moveAurora 25s ease infinite;
+  z-index: -1;
+  pointer-events: none;
+}
